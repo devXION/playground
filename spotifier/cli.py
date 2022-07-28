@@ -8,7 +8,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 @click.password_option('--secret', prompt='your secret', hide_input=False, confirmation_prompt=False)
 @click.password_option('--playlink', prompt='playlist link', required=True,hide_input=False, confirmation_prompt=False )
 @click.option('--stat', type=click.Choice(['track name', 'artist name', 'album']), prompt='')
-def credits(cid, secret, playlink, stat):
+def cli(cid, secret, playlink, stat):
     click.echo(f'credentials have been entered')
     client = SpotifyClientCredentials(client_id=cid, client_secret=secret)
     sp = spotipy.Spotify(client_credentials_manager=client)
@@ -21,5 +21,3 @@ def credits(cid, secret, playlink, stat):
         if stat == 'album':
             print(track["track"]["album"]["name"])
 
-if __name__ == '__main__':
-    credits()
