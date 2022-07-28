@@ -14,7 +14,6 @@ def credits(cid, secret, playlink, stat):
     sp = spotipy.Spotify(client_credentials_manager=client)
     playlist_URI = playlink.split("/")[-1].split("?")[0]
     for track in sp.playlist_tracks(playlist_URI)["items"]:
-        [x["track"]["uri"] for x in sp.playlist_tracks(playlist_URI)["items"]]
         track_name = track["track"]["name"]
         artist_name = track["track"]["artists"][0]["name"]
         album = track["track"]["album"]["name"]
