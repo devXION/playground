@@ -14,17 +14,12 @@ def credits(cid, secret, playlink, stat):
     sp = spotipy.Spotify(client_credentials_manager=client)
     playlist_URI = playlink.split("/")[-1].split("?")[0]
     for track in sp.playlist_tracks(playlist_URI)["items"]:
-        track_name = track["track"]["name"]
-        artist_name = track["track"]["artists"][0]["name"]
-        album = track["track"]["album"]["name"]
         if stat == 'track name':
-            print(track_name)
+            print(track["track"]["name"])
         if stat == 'artist name':
-            print(artist_name)
+            print(track["track"]["artists"][0]["name"])
         if stat == 'album':
-            print(album)
-
-
+            print(track["track"]["album"]["name"])
 
 if __name__ == '__main__':
     credits()
