@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "spotifier"
+version = "0.0.1"
+description = "This project was generated with cookiecutter-pypackage."
+authors = ["Jakiś Nędzarz <jakis@nedzarz.pl>"]
+readme = "README.md"
+repository = "https://github.com/devXION/playground"
+classifiers = [
+    'Intended Audience :: Developers',
+    'Natural Language :: English',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+click = "~8.1.3"
+spotipy = "^2.20.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "~6.2.4"
+pytest-cov = "~2.12.0"
+mock = "~4.0.3"
+flake8 = "~3.9.2"
+flake8-docstrings = "~1.6.0"
+flake8-import-order = "~0.18.1"
+flake8-todo = "^0.7"
+black = "~22.3.0"
+
+[tool.poetry.scripts]
+spotifier = 'spotifier.cli:cli'
+
+[tool.poetry.urls]
+"Issues" = "https://github.com/devXION/playground/issues"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
