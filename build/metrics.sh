@@ -19,5 +19,3 @@ echo "[metrics] Run spotifier code complexity checks."
 "$POETRY_HOME"/bin/poetry run flake8 --select=C901 --tee --output-file=code_complexity.txt --count spotifier
 echo "[metrics] Run spotifier open TODO checks."
 "$POETRY_HOME"/bin/poetry run flake8 --select=T --tee --output-file=todo_occurence.txt --statistics --count spotifier tests
-echo "[metrics] Run spotifier black checks."
-"$POETRY_HOME"/bin/poetry run black -l 80 --check spotifier
