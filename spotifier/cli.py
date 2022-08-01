@@ -6,11 +6,16 @@ from spotipy.oauth2 import SpotifyClientCredentials
 
 @click.command()
 @click.password_option(
-    "--cid", prompt="your cid", hide_input=False, confirmation_prompt=False
+    "--cid",
+    prompt="your cid",
+    hide_input=False,
+    confirmation_prompt=False
 )
 @click.password_option(
-    "--secret", prompt="your secret",
-    hide_input=False, confirmation_prompt=False
+    "--secret",
+    prompt="your secret",
+    hide_input=False,
+    confirmation_prompt=False
 )
 @click.password_option(
     "--playlink",
@@ -20,7 +25,8 @@ from spotipy.oauth2 import SpotifyClientCredentials
     confirmation_prompt=False,
 )
 @click.option(
-    "--stat", type=click.Choice(["track name", "artist name", "album"]),
+    "--stat",
+    type=click.Choice(["track name", "artist name", "album"]),
     prompt=""
 )
 def cli(cid, secret, playlink, stat):
