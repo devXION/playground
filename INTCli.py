@@ -1,3 +1,5 @@
+import pprint
+
 import click
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -28,7 +30,7 @@ def cli(cid, secret):
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=cid,
                                                    client_secret=secret,
                                                    redirect_uri='http://example.com/callback/',
-                                                   scope='user-library-read'))
+                                                   scope='playlist-read-private'))
 
     click.echo("This command will guide you through finding your songs recommendation.")
     seeds_artists = []
@@ -48,7 +50,7 @@ def cli(cid, secret):
         while artist:
             result = get_artist(sp, artist)
             for i in result['artists']['items']:
-                seeds_artists.append(i['name'])
+                seeds_artists.append(i['id'])
                 artist = click.prompt("Search for an artist", default="", type=str)
                 break
 
@@ -65,7 +67,7 @@ def cli(cid, secret):
         while track:
             result = get_track(sp, track)
             for i in result['tracks']['items']:
-                seeds_tracks.append(i['name'])
+                seeds_tracks.append(i['id'])
                 track = click.prompt("Search for a track", default="", type=str)
                 break
 
@@ -90,7 +92,7 @@ def cli(cid, secret):
     click.echo("Seeds genres:")
     click.echo(seeds_genres)
     click.echo()
-    get_recommendations(a=seeds_artists, b=seeds_tracks, c=seeds_genres)
+    get_recommendations(sp, a=seeds_artists, b=seeds_tracks, c=seeds_genres)
     click.echo(seeds_artists)
 
 
@@ -109,10 +111,16 @@ def get_artist(spotify, artist):
     return results
 
 
-def get_recommendations(sp, a, b, c):
+def get_recommendations(sp, a , b, c):
 
-  recommendation = sp.recommendations(seed_artists=arid,seed_tracks=trid,
-                            seed_genres=genre)
+  recommendation = sp.recommendations(seed_artists=a,seed_tracks=b,
+                            seed_genres=c)
+  for i in recommendation['tracks']:
+      print(i['name'])
+
+
+
+
 
 
 
